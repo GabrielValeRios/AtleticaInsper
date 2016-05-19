@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "192366430333",
+    "firebase_url": "https://atleticainsper-e4687.firebaseio.com",
+    "project_id": "atleticainsper-e4687",
+    "storage_bucket": "atleticainsper-e4687.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192366430333:android:a6b8bfbfc1e58787",
+        "android_client_info": {
+          "package_name": "br.edu.insper.atleticainsper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192366430333-dsivfmftm6af916vafquu1fruptjt4u3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4s8-oxm7ZFjm5CkJ0c5DsTpNuKMqFBoM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
