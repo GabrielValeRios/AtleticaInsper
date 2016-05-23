@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="br.edu.insper.atleticainsper.ManageMenuActivity">
+
+    <ImageView android:id="@id/logoAtletica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:adjustViewBounds="true"
+        android:maxWidth="300dp"
+        android:maxHeight="300dp"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="70dp"/>
+
+    <TextView android:id="@id/loggedAs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loggedAs"
+        android:layout_centerHorizontal="true"
+        android:textSize="16pt"
+        android:textAlignment="center"
+        android:layout_below="@id/logoAtletica"/>
+
+    <TextView android:id="@id/loggedUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loggedAs"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="@color/loggedUsername"
+        android:text="@string/loggedUsername"/>
+
+    <RelativeLayout android:id="@id/manageMenuButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loggedUsername"
+        android:layout_alignBottom="@id/logout"
+        android:layout_marginTop="20dp">
+
+        <Button android:id="@id/manageProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manageProducts"
+            android:layout_marginTop="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"/>
+
+        <Button android:id="@id/viewSalesHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/manageProducts"
+            android:text="@string/viewSalesHistory"
+            android:layout_marginTop="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"/>
+
+        <Button android:id="@id/viewCashFlow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewSalesHistory"
+            android:text="@string/viewCashFlow"
+            android:layout_marginTop="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"/>
+
+    </RelativeLayout>
+
+    <Button android:id="@id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:layout_alignRight="@id/manageMenuButtons"
+        android:layout_alignParentBottom="true"
+        android:padding="30dp"/>
+
+</RelativeLayout>

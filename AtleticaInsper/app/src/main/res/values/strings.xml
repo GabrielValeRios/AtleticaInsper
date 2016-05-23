@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">AtleticaInsper</string>
+    <string name="app_name">Atlética Insper</string>
+    <string name="forgotPassword"><a href="https://google.com"><i>Esqueci minha senha</i></a></string>
+    <string name="login">Login</string>
+    <string name="DONE">Ok</string>
+    <string name="loggedAs">Usando como:</string>
+    <string name="loggedUsername">DEFAULT_USER</string>
+    <string name="manageProducts">Gerenciar Produtos</string>
+    <string name="viewSalesHistory">Histórico de Vendas</string>
+    <string name="viewCashFlow">Controle de Caixa</string>
+    <string name="logout">Logout</string>
 </resources>

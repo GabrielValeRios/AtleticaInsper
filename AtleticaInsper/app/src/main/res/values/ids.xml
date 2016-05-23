@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="logoAtletica" type="id" />
+    <item name="username" type="id" />
+    <item name="password" type="id" />
+    <item name="login" type="id" />
+    <item name="forgotPassword" type="id" />
+    <item name="loggedAs" type="id" />
+    <item name="loggedUsername" type="id" />
+    <item name="manageProducts" type="id" />
+    <item name="viewCashFlow" type="id" />
+    <item name="viewSalesHistory" type="id" />
+    <item name="logout" type="id" />
+    <item name="manageMenuButtons" type="id" />
+</resources>
