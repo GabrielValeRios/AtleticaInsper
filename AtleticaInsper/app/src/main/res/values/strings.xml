@@ -1,12 +1,33 @@
 <resources>
-    <string name="app_name">Atlética Insper</string>
+
+    <!-- [START] Application Name -->
+    <string name="APP_NAME">Atlética Insper</string>
+    <!-- [END] Application Name -->
+
+    <!-- [START] Activity titles -->
+    <string name="ACT_TITLE_LOGIN">Atlética Insper</string>
+    <string name="ACT_TITLE_PRODUCTS_NORMAL">Produtos</string>
+    <string name="ACT_TITLE_MANAGE_MENU">Atlética Insper</string>
+    <string name="ACT_TITLE_PRODUCTS_ADMIN">Gerenciar Produtos</string>
+    <string name="ACT_TITLE_SALES_HISTORY">Histórico de Vendas</string>
+    <string name="ACT_TITLE_CASH_FLOW">Controle de Caixa</string>
+    <!-- [END] Activity titles-->
+
     <string name="forgotPassword"><a href="https://google.com"><i>Esqueci minha senha</i></a></string>
     <string name="login">Login</string>
-    <string name="DONE">Ok</string>
+    <string name="DONE">OK</string>
     <string name="loggedAs">Usando como:</string>
-    <string name="loggedUsername">DEFAULT_USER</string>
+    <string name="loggedUsername">ADMIN_USER</string>
+    <string name="logout">Logout</string>
     <string name="manageProducts">Gerenciar Produtos</string>
     <string name="viewSalesHistory">Histórico de Vendas</string>
     <string name="viewCashFlow">Controle de Caixa</string>
-    <string name="logout">Logout</string>
+    <string name="price">R$17,00</string>
+
+    <!-- [START] Products info -->
+    <string name="p1">Boné\nQuantidade em estoque: 5</string>
+    <string name="p2">Camiseta\nQuantidade em estoque: 6</string>
+    <string name="p3">Samba Canção\nQuantidade em estoque: 7</string>
+    <!-- [END] Products info-->
+
 </resources>

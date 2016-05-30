@@ -17,7 +17,7 @@
         android:maxWidth="300dp"
         android:maxHeight="300dp"
         android:scaleType="fitCenter"
-        android:layout_marginTop="70dp"/>
+        android:layout_marginTop="40dp"/>
 
     <TextView android:id="@id/loggedAs"
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
         android:layout_below="@id/loggedAs"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:textColor="@color/loggedUsername"
+        android:textColor="@color/RED"
         android:text="@string/loggedUsername"/>
 
     <RelativeLayout android:id="@id/manageMenuButtons"
@@ -52,7 +52,7 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"/>
 
-        <Button android:id="@id/viewSalesHistory"
+        <Button android:id="@id/salesHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/manageProducts"
@@ -61,10 +61,10 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"/>
 
-        <Button android:id="@id/viewCashFlow"
+        <Button android:id="@id/cashFlow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/viewSalesHistory"
+            android:layout_below="@id/salesHistory"
             android:text="@string/viewCashFlow"
             android:layout_marginTop="10dp"
             android:paddingTop="20dp"

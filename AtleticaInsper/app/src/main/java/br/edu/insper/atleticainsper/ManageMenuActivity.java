@@ -12,12 +12,9 @@ import android.widget.TextView;
 
 public class ManageMenuActivity extends AppCompatActivity {
 
-    ImageView logoAtletica;
-    TextView loggedAs;
-    TextView loggedUsername;
     Button manageProducts;
-    Button viewCashFlow;
-    Button viewSalesHistory;
+    Button cashFlow;
+    Button salesHistory;
     Button logout;
 
     @Override
@@ -25,43 +22,40 @@ public class ManageMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_menu);
 
-        logoAtletica = (ImageView) findViewById(R.id.logoAtletica);
-        loggedAs = (TextView) findViewById(R.id.loggedAs);
-        loggedUsername = (TextView) findViewById(R.id.loggedUsername);
         manageProducts = (Button) findViewById(R.id.manageProducts);
-        viewCashFlow = (Button) findViewById(R.id.viewCashFlow);
-        viewSalesHistory = (Button) findViewById(R.id.viewSalesHistory);
+        cashFlow = (Button) findViewById(R.id.cashFlow);
+        salesHistory = (Button) findViewById(R.id.salesHistory);
         logout = (Button) findViewById(R.id.logout);
 
         manageProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ManageMenuActivity.this, ManageProductsActivity.class);
-                startActivity(intent);
+                Intent ManageProducts = new Intent(ManageMenuActivity.this, ManageProductsActivity.class);
+                startActivity(ManageProducts);
             }
         });
 
-        viewCashFlow.setOnClickListener(new View.OnClickListener() {
+        cashFlow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ManageMenuActivity.this, CashFlowActivity.class);
-                startActivity(intent);
+                Intent CashFlow = new Intent(ManageMenuActivity.this, CashFlowActivity.class);
+                startActivity(CashFlow);
             }
         });
 
-        viewSalesHistory.setOnClickListener(new View.OnClickListener() {
+        salesHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ManageMenuActivity.this, SalesHistoryActivity.class);
-                startActivity(intent);
+                Intent SalesHistory = new Intent(ManageMenuActivity.this, SalesHistoryActivity.class);
+                startActivity(SalesHistory);
             }
         });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ManageMenuActivity.this, LoginActivity.class);
-                startActivity(intent);
+                Intent Login = new Intent(ManageMenuActivity.this, LoginActivity.class);
+                startActivity(Login);
             }
         });
     }
