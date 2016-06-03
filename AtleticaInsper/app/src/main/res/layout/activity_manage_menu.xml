@@ -35,7 +35,8 @@
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:textColor="@color/RED"
-        android:text="@string/loggedUsername"/>
+        android:text="@string/loggedUsername"
+        android:textSize="20pt"/>
 
     <RelativeLayout android:id="@id/manageMenuButtons"
         android:layout_width="match_parent"

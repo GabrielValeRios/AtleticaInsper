@@ -1,12 +1,15 @@
 package br.edu.insper.atleticainsper;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,11 +30,23 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
     DatabaseReference database;
     TableLayout productTable;
+    Button logout;
+    String info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_normal);
+
+        logout = (Button) findViewById(R.id.logout);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Login = new Intent(ProductsNormalActivity.this, LoginActivity.class);
+                startActivity(Login);
+            }
+        });
     }
 
     @Override
@@ -81,8 +96,9 @@ public class ProductsNormalActivity extends AppCompatActivity {
                     //Configuração das Views
                     productImg.setImageResource(R.drawable.logo);
                     productImg.setBackgroundColor(Color.parseColor("#FF0000"));
-
-                    productInfo.setText(name + "\n" + "R$" + price);
+                    info = name + "\n" + "R$" + price;
+                    productInfo.setText(info);
+                    productInfo.setTextSize(20);
                     productInfo.setBackgroundColor(Color.parseColor("#bf0e0e"));
                     productInfo.setTextColor(Color.parseColor("#ffffff"));
                     productInfo.setGravity(Gravity.CENTER);
@@ -101,6 +117,9 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    @Override
+    public void onBackPressed() {
     }
 }

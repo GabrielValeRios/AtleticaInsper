@@ -1,21 +1,31 @@
 package br.edu.insper.atleticainsper;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        database = FirebaseDatabase.getInstance().getReference();
         //logoAtletica = (ImageView) findViewById(R.id.logoAtletica);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
@@ -68,6 +77,47 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        database = FirebaseDatabase.getInstance().getReference();
+
+        database.child("products").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                HashMap<String, HashMap<String, String>> users = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
+                Log.i("HASH_MAP", String.valueOf(users));
+
+                for(Map.Entry<String, HashMap<String, String>> entry : users.entrySet()) {
+
+                    Map<String, String> userParams = entry.getValue();
+
+                    String isAdmin = userParams.get("admin"); //boolean "true" or "false"
+                    String isMaster = userParams.get("master"); //boolean "true" or "false"
+                    String username = userParams.get("user"); //string "xyz"
+                    String password = userParams.get("pass"); //string "xyz"
+
+                    Log.i("ACCOUNT_PARAM_IS_ADMIN",isAdmin);
+                    Log.i("ACCOUNT_PARAM_IS_MASTER",isMaster);
+                    Log.i("ACCOUNT_PARAM_USERNAME",username);
+                    Log.i("ACCOUNT_PARAM_PASSWORD",password);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
     public void onBackPressed() {
+    }
+
+    private void userLogin(String username, String password) {
+
     }
 }

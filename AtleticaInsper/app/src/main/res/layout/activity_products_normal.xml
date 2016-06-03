@@ -9,11 +9,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="br.edu.insper.atleticainsper.ProductsNormalActivity">
 
+    <TextView android:id="@id/loggedAs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loggedAs"/>
+
+    <TextView android:id="@id/loggedUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loggedUsernameNormal"
+        android:layout_below="@id/loggedAs"
+        android:textSize="14pt"
+        android:textColor="@color/RED"/>
+
+    <Button android:id="@id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:layout_alignParentRight="true"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_below="@id/logout"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
