@@ -66,49 +66,13 @@ public class ProductsNormalActivity extends AppCompatActivity {
                 for(Map.Entry<String, HashMap<String, String>> entry : products.entrySet()) {
 
                     Map<String, String> productParams = entry.getValue();
-
                     String available = productParams.get("available"); //boolean "true" or "false"
                     String current_qty = productParams.get("current_qty"); //integer "x"
-                    String id = productParams.get("id"); //integer "x"
                     String name = productParams.get("name"); //string "xyz"
                     String price = productParams.get("price"); //float "x.x"
                     String sold_qty = productParams.get("sold_qty"); //integer "x"
 
-                    //Criação das Views necessárias; o id productTable se refere ao TableLayout
-                    ImageView productImg = new ImageView(ProductsNormalActivity.this);
-                    TextView productInfo = new TextView(ProductsNormalActivity.this);
-                    TableRow row = new TableRow(ProductsNormalActivity.this);
-                    TableLayout table = (TableLayout) findViewById(R.id.productTable);
-
-                    //Configuração de parâmetros de layout das views recém-criadas
-                    TableRow.LayoutParams layoutParamsImg = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.6f);
-                    TableRow.LayoutParams layoutParamsInfo = new TableRow.LayoutParams(0, 600, 0.4f);
-                    TableLayout.LayoutParams layoutParamsRow = new TableLayout.LayoutParams(
-                            TableLayout.LayoutParams.WRAP_CONTENT,
-                            TableLayout.LayoutParams.WRAP_CONTENT);
-
-                    layoutParamsRow.setMargins(0,10,0,0);
-
-                    productImg.setLayoutParams(layoutParamsImg);
-                    productInfo.setLayoutParams(layoutParamsInfo);
-                    row.setLayoutParams(layoutParamsRow);
-
-                    //Configuração das Views
-                    productImg.setImageResource(R.drawable.logo);
-                    productImg.setBackgroundColor(Color.parseColor("#FF0000"));
-                    info = name + "\n" + "R$" + price;
-                    productInfo.setText(info);
-                    productInfo.setTextSize(20);
-                    productInfo.setBackgroundColor(Color.parseColor("#bf0e0e"));
-                    productInfo.setTextColor(Color.parseColor("#ffffff"));
-                    productInfo.setGravity(Gravity.CENTER);
-
-                    //Adiciono as views na TableRow
-                    row.addView(productImg, 0);
-                    row.addView(productInfo, 1);
-
-                    //Adiciono a TableRow no TableLayout
-                    table.addView(row, 0);
+                    createProduct(name, price);
                 }
             }
 
@@ -121,5 +85,46 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+    }
+
+    public void createProduct(String name, String price) {
+        //Criação das Views necessárias
+        ImageView productImg = new ImageView(ProductsNormalActivity.this);
+        TextView productInfo = new TextView(ProductsNormalActivity.this);
+        TableRow row = new TableRow(ProductsNormalActivity.this);
+        TableLayout table = (TableLayout) findViewById(R.id.productTable);
+
+        //Configuração de parâmetros de layout das views recém-criadas
+        TableRow.LayoutParams layoutParamsImg = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.6f);
+        TableRow.LayoutParams layoutParamsInfo = new TableRow.LayoutParams(0, 600, 0.4f);
+        TableLayout.LayoutParams layoutParamsRow = new TableLayout.LayoutParams(
+                TableLayout.LayoutParams.WRAP_CONTENT,
+                TableLayout.LayoutParams.WRAP_CONTENT);
+
+        layoutParamsRow.setMargins(0,10,0,0);
+
+        productImg.setLayoutParams(layoutParamsImg);
+        productInfo.setLayoutParams(layoutParamsInfo);
+        row.setLayoutParams(layoutParamsRow);
+
+        //Configuração das Views
+        productImg.setImageResource(R.drawable.logo);
+        productImg.setBackgroundColor(Color.parseColor("#FF0000"));
+
+        info = name + "\n" + "R$" + price;
+        productInfo.setText(info);
+        productInfo.setTextSize(20);
+        productInfo.setBackgroundColor(Color.parseColor("#bf0e0e"));
+        productInfo.setTextColor(Color.parseColor("#ffffff"));
+        productInfo.setGravity(Gravity.CENTER);
+
+        //Adiciono as views na TableRow
+        row.addView(productImg, 0);
+        row.addView(productInfo, 1);
+
+        //Adiciono a TableRow no TableLayout
+        if (table != null) {
+            table.addView(row, 0);
+        }
     }
 }

@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText password;
     Button login;
     TextView forgotPassword;
+    HashMap<String, HashMap<String, Object>> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +64,10 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(username.getText().toString().equals("gustavo") && password.getText().toString().equals("1234")) {
-                    Intent ProductsNormal = new Intent(LoginActivity.this, ProductsNormalActivity.class);
-                    startActivity(ProductsNormal);
-                } else if(username.getText().toString().equals("marcelo") && password.getText().toString().equals("1234")) {
-                    Intent ManageMenu = new Intent(LoginActivity.this, ManageMenuActivity.class);
-                    startActivity(ManageMenu);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Combinação incorreta de usuário e senha!", Toast.LENGTH_SHORT).show();
-                }
+
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
+                userLogin(user, pass);
             }
         });
         // [END Configure screen elements]
@@ -82,33 +79,16 @@ public class LoginActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance().getReference();
 
-        database.child("products").addListenerForSingleValueEvent(new ValueEventListener() {
+        database.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-
-                HashMap<String, HashMap<String, String>> users = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
-                Log.i("HASH_MAP", String.valueOf(users));
-
-                for(Map.Entry<String, HashMap<String, String>> entry : users.entrySet()) {
-
-                    Map<String, String> userParams = entry.getValue();
-
-                    String isAdmin = userParams.get("admin"); //boolean "true" or "false"
-                    String isMaster = userParams.get("master"); //boolean "true" or "false"
-                    String username = userParams.get("user"); //string "xyz"
-                    String password = userParams.get("pass"); //string "xyz"
-
-                    Log.i("ACCOUNT_PARAM_IS_ADMIN",isAdmin);
-                    Log.i("ACCOUNT_PARAM_IS_MASTER",isMaster);
-                    Log.i("ACCOUNT_PARAM_USERNAME",username);
-                    Log.i("ACCOUNT_PARAM_PASSWORD",password);
-
-                }
+                users = (HashMap<String, HashMap<String, Object>>) snapshot.getValue();
+                //Log.i("HASH_MAP", String.valueOf(users));
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                //
             }
         });
     }
@@ -117,7 +97,33 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
-    private void userLogin(String username, String password) {
+    private int userLogin(String user, String pass) {
 
+        Set userEntries = users.entrySet();
+
+        for(Map.Entry<String, HashMap<String, Object>> entry : users.entrySet()) {
+
+            Map<String, Object> userParams = entry.getValue();
+
+            boolean isAdmin = (boolean) userParams.get("admin"); //boolean "true" or "false"
+            boolean isMaster = (boolean) userParams.get("master"); //boolean "true" or "false"
+            String username = (String) userParams.get("user"); //string "xyz"
+            String password = (String) userParams.get("pass").toString(); //string "xyz"
+
+            if(username.equals(user) && password.equals(pass)) {
+                if(isAdmin) {
+                    Intent ManageMenu = new Intent(LoginActivity.this, ManageMenuActivity.class);
+                    startActivity(ManageMenu);
+                    return 0;
+                } else {
+                    Intent ProductsNormal = new Intent(LoginActivity.this, ProductsNormalActivity.class);
+                    startActivity(ProductsNormal);
+                    return 0;
+                }
+            }
+        }
+
+        Toast.makeText(LoginActivity.this, "Combinação incorreta de usuário e senha!", Toast.LENGTH_SHORT).show();
+        return -1;
     }
 }

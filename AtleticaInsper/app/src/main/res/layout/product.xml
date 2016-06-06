@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView android:id="@+id/productImg"
+        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:src="@drawable/logo"
+        android:layout_weight="0.6"
+        android:maxHeight="150dp"
+        android:maxWidth="150dp"/>
+
+    <LinearLayout android:id="@+id/infoSection"
+        android:layout_weight="0.4"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text" />
+
+    </LinearLayout>
+
+</TableRow>
