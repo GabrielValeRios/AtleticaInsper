@@ -11,6 +11,7 @@
     <string name="ACT_TITLE_PRODUCTS_ADMIN">Gerenciar Produtos</string>
     <string name="ACT_TITLE_SALES_HISTORY">Histórico de Vendas</string>
     <string name="ACT_TITLE_CASH_FLOW">Controle de Caixa</string>
+    <string name="ACT_TITLE_SELL_PRODUCT">Vender Produto</string>
     <!-- [END] Activity titles-->
 
     <string name="forgotPassword"><a href="https://google.com"><i>Esqueci minha senha</i></a></string>
@@ -23,12 +24,31 @@
     <string name="manageProducts">Gerenciar Produtos</string>
     <string name="viewSalesHistory">Histórico de Vendas</string>
     <string name="viewCashFlow">Controle de Caixa</string>
-    <string name="price">R$17,00</string>
+    <string name="price">Preço</string>
 
     <!-- [START] Products info -->
     <string name="p1">Boné\nQuantidade em estoque: 5</string>
     <string name="p2">Camiseta\nQuantidade em estoque: 6</string>
     <string name="p3">Samba Canção\nQuantidade em estoque: 7</string>
+    <string name="product1Info">Teste\nR$100,00</string>
     <!-- [END] Products info-->
+
+    <!-- [START] Sell product form -->
+    <string name="LABEL_Vendedor">Vendedor(a)</string>
+    <string name="LABEL_Produto">Produto</string>
+    <string name="LABEL_Preço">Preço</string>
+    <string name="LABEL_Cancelar">Cancelar</string>
+    <string name="LABEL_Confirmar">Confirmar Venda</string>
+    <string name="TEST_PRICE">R$20,00</string>
+    <string name="TEST_PRODUCT">TESTE</string>
+    <string name="LABEL_selectProducts">Selecione um produto:</string>
+    <string name="LABEL_Método">Método Pgto.</string>
+    <!-- [END] Sell product form -->
+
+    <!-- [START] Manage Products Activity -->
+    <string name="addProduct">Adicionar Produto</string>
+    <string name="updateProduct">Atualizar Produto</string>
+    <string name="remProduct">Remover Produto</string>
+    <!-- [END] Manage Products Activity -->
 
 </resources>

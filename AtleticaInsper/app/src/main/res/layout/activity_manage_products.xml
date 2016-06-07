@@ -7,6 +7,79 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="br.edu.insper.atleticainsper.ManageProductsActivity">
+    tools:context="br.edu.insper.atleticainsper.ProductsNormalActivity">
+
+    <LinearLayout android:id="@+id/manageProductsMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button android:id="@+id/addProduct"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.3"
+            android:text="@string/addProduct"/>
+
+        <Button android:id="@+id/updateProduct"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.3"
+            android:text="@string/updateProduct"/>
+
+        <Button android:id="@+id/remProduct"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.3"
+            android:text="@string/remProduct"/>
+
+    </LinearLayout>
+
+    <ScrollView android:id="@+id/productScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_below="@id/manageProductsMenu"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TableLayout android:id="@id/productTable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--
+                <TableRow android:id="@+id/product1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView android:id="@+id/product1Img"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.6"
+                        android:background="@color/RED"
+                        android:src="@drawable/bone"/>
+
+                    <TextView android:id="@+id/product1Info"
+                        android:layout_width="0dp"
+                        android:layout_height="300dp"
+                        android:layout_weight="0.4"
+                        android:textSize="12pt"
+                        android:text="@string/product1Info"
+                        android:background="@color/productInfo"
+                        android:textColor="@color/WHITE"
+                        android:gravity="center" />
+
+                </TableRow>
+                -->
+
+            </TableLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

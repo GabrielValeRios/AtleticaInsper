@@ -20,4 +20,6 @@
     <!-- [START] [ACT_PRODUCTS] -->
     <color name="productInfo">#bf0e0e</color>
     <!-- [END] [ACT_PRODUCTS] -->
+
+    <color name="sellerChooserItem">#dd2522</color>
 </resources>

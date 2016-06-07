@@ -1,6 +1,7 @@
 package br.edu.insper.atleticainsper;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -28,10 +29,31 @@ import java.util.Map;
 
 public class ProductsNormalActivity extends AppCompatActivity {
 
+    //Array for product images
+    TypedArray prodImgs;
+    int i;
+
+    //Reference to Firebase realtime database
     DatabaseReference database;
-    TableLayout productTable;
+
+    //Screen elements
+    TableLayout table;
+    TableRow row;
     Button logout;
     String info;
+    TextView productInfo;
+    ImageView productImg;
+
+    //Product parameters
+    String available;
+    String critical_qty;
+    String current_qty;
+    String hasDiscount;
+    String name;
+    String price;
+    String priceAtl;
+    String priceSoc;
+    String sold_qty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,26 +75,32 @@ public class ProductsNormalActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        prodImgs = getResources().obtainTypedArray(R.array.product_imgs);
+        i = 0;
+
         database = FirebaseDatabase.getInstance().getReference();
-        productTable = (TableLayout) findViewById(R.id.productTable);
 
         database.child("products").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
                 HashMap<String, HashMap<String, String>> products = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
-                Log.i("HASH_MAP", String.valueOf(products));
 
                 for(Map.Entry<String, HashMap<String, String>> entry : products.entrySet()) {
 
                     Map<String, String> productParams = entry.getValue();
-                    String available = productParams.get("available"); //boolean "true" or "false"
-                    String current_qty = productParams.get("current_qty"); //integer "x"
-                    String name = productParams.get("name"); //string "xyz"
-                    String price = productParams.get("price"); //float "x.x"
-                    String sold_qty = productParams.get("sold_qty"); //integer "x"
+                    available = productParams.get("available");
+                    critical_qty = productParams.get("critical_qty");
+                    current_qty = productParams.get("current_qty");
+                    hasDiscount = productParams.get("hasDiscount");
+                    name = productParams.get("name");
+                    price = productParams.get("price");
+                    priceAtl = productParams.get("priceAtl");
+                    priceSoc = productParams.get("priceSoc");
+                    sold_qty = productParams.get("sold_qty");
 
                     createProduct(name, price);
+                    i = Integer.parseInt(entry.getKey().substring(7,10));
                 }
             }
 
@@ -87,44 +115,63 @@ public class ProductsNormalActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
-    public void createProduct(String name, String price) {
-        //Criação das Views necessárias
-        ImageView productImg = new ImageView(ProductsNormalActivity.this);
-        TextView productInfo = new TextView(ProductsNormalActivity.this);
-        TableRow row = new TableRow(ProductsNormalActivity.this);
-        TableLayout table = (TableLayout) findViewById(R.id.productTable);
+    public void createProduct(final String n, final String p) {
 
-        //Configuração de parâmetros de layout das views recém-criadas
-        TableRow.LayoutParams layoutParamsImg = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.6f);
-        TableRow.LayoutParams layoutParamsInfo = new TableRow.LayoutParams(0, 600, 0.4f);
-        TableLayout.LayoutParams layoutParamsRow = new TableLayout.LayoutParams(
-                TableLayout.LayoutParams.WRAP_CONTENT,
-                TableLayout.LayoutParams.WRAP_CONTENT);
+        // [START] Criação das Views necessárias
+        productImg = new ImageView(ProductsNormalActivity.this);
+        productInfo = new TextView(ProductsNormalActivity.this);
+        row = new TableRow(ProductsNormalActivity.this);
+        table = (TableLayout) findViewById(R.id.productTable);
+        // [END] Criação das Views necessárias
 
+
+        // [START] Configuração de parâmetros de layout das views recém-criadas
+        TableRow.LayoutParams layoutParamsImg = new TableRow.LayoutParams(400,300);
+        TableRow.LayoutParams layoutParamsInfo = new TableRow.LayoutParams(740, 300);
+        TableLayout.LayoutParams layoutParamsRow = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
         layoutParamsRow.setMargins(0,10,0,0);
-
         productImg.setLayoutParams(layoutParamsImg);
         productInfo.setLayoutParams(layoutParamsInfo);
         row.setLayoutParams(layoutParamsRow);
+        // [END] Configuração de parâmetros de layout das views recém-criadas
 
-        //Configuração das Views
-        productImg.setImageResource(R.drawable.logo);
-        productImg.setBackgroundColor(Color.parseColor("#FF0000"));
 
-        info = name + "\n" + "R$" + price;
+        // [START] Configuração de layout das informações do produto
+        info = n + "\n" + "R$" + p;
         productInfo.setText(info);
         productInfo.setTextSize(20);
         productInfo.setBackgroundColor(Color.parseColor("#bf0e0e"));
         productInfo.setTextColor(Color.parseColor("#ffffff"));
         productInfo.setGravity(Gravity.CENTER);
+        productInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent SellProduct = new Intent(ProductsNormalActivity.this, SellProductActivity.class);
+                SellProduct.putExtra("productName",n);
+                SellProduct.putExtra("productPrice",p);
+                startActivity(SellProduct);
+            }
+        });
+        // [END] Configuração de layout das informações do produto
 
-        //Adiciono as views na TableRow
+
+        // [START] Configuração de layout da imagem do produto
+        //productImg.setImageResource(prodImgs.getResourceId(i, -1));
+        productImg.setImageResource(R.drawable.product001);
+        productImg.setBackgroundColor(Color.parseColor("#FF0000"));
+        // [END] Configuração de layout da imagem do produto
+
+
+        // [START] Adição das views na TableRow
         row.addView(productImg, 0);
         row.addView(productInfo, 1);
+        // [END] Adição das views na TableRow
 
-        //Adiciono a TableRow no TableLayout
+
+        // [START] Adição da row no TableLayout
         if (table != null) {
             table.addView(row, 0);
         }
+        // [END] Adição da row no TableLayout
     }
 }
