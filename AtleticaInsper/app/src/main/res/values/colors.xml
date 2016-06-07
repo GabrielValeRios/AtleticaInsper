@@ -3,8 +3,21 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="userInput">#c1bfbf</color>
-    <color name="userInputText">#000000</color>
-    <color name="tempBG">#000000</color>
-    <color name="loggedUsername">#ff0000</color>
+
+    <!-- [START] Default Colors -->
+    <color name="BLACK">#000000</color>
+    <color name="WHITE">#FFFFFF</color>
+    <color name="RED">#FF0000</color>
+    <color name="GREEN">#00FF00</color>
+    <color name="BLUE">#0000FF</color>
+    <color name="YELLOW">#FFFF00</color>
+    <!-- [END] Default Colors -->
+
+    <!-- [START] [ACT_LOGIN] Colors used by the form fields -->
+    <color name="loginFormField">#c1bfbf</color>
+    <!-- [END] [ACT_LOGIN] Colors used by the form fields -->
+
+    <!-- [START] [ACT_PRODUCTS] -->
+    <color name="productInfo">#bf0e0e</color>
+    <!-- [END] [ACT_PRODUCTS] -->
 </resources>

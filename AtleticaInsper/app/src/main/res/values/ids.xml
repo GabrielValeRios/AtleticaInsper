@@ -12,4 +12,12 @@
     <item name="viewSalesHistory" type="id" />
     <item name="logout" type="id" />
     <item name="manageMenuButtons" type="id" />
+    <item name="cashFlow" type="id" />
+    <item name="salesHistory" type="id" />
+    <item name="productsTable" type="id" />
+    <item name="product" type="id" />
+    <item name="productImg" type="id" />
+    <item name="productInfo" type="id" />
+    <item name="productPrice" type="id" />
+    <item name="productTable" type="id" />
 </resources>

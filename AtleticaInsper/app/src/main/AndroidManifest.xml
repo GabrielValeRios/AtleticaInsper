@@ -7,38 +7,46 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/APP_NAME"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".LoginActivity"
+            android:label="@string/ACT_TITLE_LOGIN"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait">
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ManageMenuActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:screenOrientation="portrait" />
-
-        <activity android:name=".ManageProductsActivity"
+            android:label="@string/ACT_TITLE_MANAGE_MENU"
             android:screenOrientation="portrait"
-            android:label="Gerenciar Produtos"/>
-
-        <activity android:name=".SalesHistoryActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ManageProductsActivity"
+            android:label="@string/ACT_TITLE_PRODUCTS_ADMIN"
             android:screenOrientation="portrait"
-            android:label="Histórico de Vendas"/>
-
-        <activity android:name=".CashFlowActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SalesHistoryActivity"
+            android:label="@string/ACT_TITLE_SALES_HISTORY"
             android:screenOrientation="portrait"
-            android:label="Controle de Caixa"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CashFlowActivity"
+            android:label="@string/ACT_TITLE_CASH_FLOW"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ProductsNormalActivity"
+            android:label="@string/ACT_TITLE_PRODUCTS_NORMAL"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
