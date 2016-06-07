@@ -47,6 +47,9 @@
             android:label="@string/ACT_TITLE_PRODUCTS_NORMAL"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SellProductActivity"
+            android:label="@string/ACT_TITLE_SELL_PRODUCT"></activity>
     </application>
 
 </manifest>

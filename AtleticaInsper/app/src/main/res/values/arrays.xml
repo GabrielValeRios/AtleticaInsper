@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="product_imgs">
+        <item>@drawable/product001</item>
+        <item>@drawable/product002</item>
+        <item>@drawable/product003</item>
+        <item>@drawable/product004</item>
+        <item>@drawable/product005</item>
+        <item>@drawable/product006</item>
+        <item>@drawable/product007</item>
+        <item>@drawable/product008</item>
+        <item>@drawable/product009</item>
+        <item>@drawable/product010</item>
+        <item>@drawable/product011</item>
+        <item>@drawable/product012</item>
+        <item>@drawable/product013</item>
+        <item>@drawable/product014</item>
+        <item>@drawable/product015</item>
+        <item>@drawable/product016</item>
+        <item>@drawable/product017</item>
+        <item>@drawable/product018</item>
+        <item>@drawable/product019</item>
+        <item>@drawable/product020</item>
+        <item>@drawable/product021</item>
+        <item>@drawable/product022</item>
+        <item>@drawable/product023</item>
+        <item>@drawable/product024</item>
+        <item>@drawable/product025</item>
+        <item>@drawable/product026</item>
+        <item>@drawable/product027</item>
+        <item>@drawable/product028</item>
+        <item>@drawable/product029</item>
+    </integer-array>
+
+</resources>

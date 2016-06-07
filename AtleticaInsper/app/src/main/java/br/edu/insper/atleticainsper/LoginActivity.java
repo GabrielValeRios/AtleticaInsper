@@ -39,10 +39,14 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgotPassword;
     HashMap<String, HashMap<String, Object>> users;
 
+    //FirebaseFiller filler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //filler = new FirebaseFiller();
 
         //logoAtletica = (ImageView) findViewById(R.id.logoAtletica);
         username = (EditText) findViewById(R.id.username);
@@ -99,8 +103,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private int userLogin(String user, String pass) {
 
-        Set userEntries = users.entrySet();
-
         for(Map.Entry<String, HashMap<String, Object>> entry : users.entrySet()) {
 
             Map<String, Object> userParams = entry.getValue();
@@ -123,7 +125,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
-        Toast.makeText(LoginActivity.this, "Combinação incorreta de usuário e senha!", Toast.LENGTH_SHORT).show();
+        Toast toast = Toast.makeText(LoginActivity.this, "Combinação incorreta de usuário e senha!", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+        toast.show();
+
         return -1;
     }
 }
