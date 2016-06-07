@@ -45,4 +45,10 @@
     <string name="LABEL_Método">Método Pgto.</string>
     <!-- [END] Sell product form -->
 
+    <!-- [START] Manage Products Activity -->
+    <string name="addProduct">Adicionar Produto</string>
+    <string name="updateProduct">Atualizar Produto</string>
+    <string name="remProduct">Remover Produto</string>
+    <!-- [END] Manage Products Activity -->
+
 </resources>

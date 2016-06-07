@@ -46,9 +46,13 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
     //Product parameters
     String available;
+    String critical_qty;
     String current_qty;
+    String hasDiscount;
     String name;
     String price;
+    String priceAtl;
+    String priceSoc;
     String sold_qty;
 
     @Override
@@ -85,11 +89,15 @@ public class ProductsNormalActivity extends AppCompatActivity {
                 for(Map.Entry<String, HashMap<String, String>> entry : products.entrySet()) {
 
                     Map<String, String> productParams = entry.getValue();
-                    available = productParams.get("available"); //boolean "true" or "false"
-                    current_qty = productParams.get("current_qty"); //integer "x"
-                    name = productParams.get("name"); //string "xyz"
-                    price = productParams.get("price"); //float "x.x"
-                    sold_qty = productParams.get("sold_qty"); //integer "x"
+                    available = productParams.get("available");
+                    critical_qty = productParams.get("critical_qty");
+                    current_qty = productParams.get("current_qty");
+                    hasDiscount = productParams.get("hasDiscount");
+                    name = productParams.get("name");
+                    price = productParams.get("price");
+                    priceAtl = productParams.get("priceAtl");
+                    priceSoc = productParams.get("priceSoc");
+                    sold_qty = productParams.get("sold_qty");
 
                     createProduct(name, price);
                     i = Integer.parseInt(entry.getKey().substring(7,10));
@@ -148,7 +156,8 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
 
         // [START] Configuração de layout da imagem do produto
-        productImg.setImageResource(prodImgs.getResourceId(i, -1));
+        //productImg.setImageResource(prodImgs.getResourceId(i, -1));
+        productImg.setImageResource(R.drawable.product001);
         productImg.setBackgroundColor(Color.parseColor("#FF0000"));
         // [END] Configuração de layout da imagem do produto
 

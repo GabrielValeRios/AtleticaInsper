@@ -104,7 +104,6 @@ public class SellProductActivity extends AppCompatActivity {
                                             .setValue(String.valueOf(current_qty - 1));
 
                                     if(Integer.parseInt(productParams.get("current_qty")) == 1) {
-                                        Log.i("TEST","qqr merda");
                                         database.child("products")
                                                 .child(productID)
                                                 .child("available")
