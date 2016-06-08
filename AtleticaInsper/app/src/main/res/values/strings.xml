@@ -49,6 +49,7 @@
     <string name="addProduct">Adicionar Produto</string>
     <string name="updateProduct">Atualizar Produto</string>
     <string name="remProduct">Remover Produto</string>
+    <string name="DEFAULT">DEFAULT</string>
     <!-- [END] Manage Products Activity -->
 
 </resources>

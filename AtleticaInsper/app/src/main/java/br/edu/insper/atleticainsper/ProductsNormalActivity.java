@@ -29,12 +29,12 @@ import java.util.Map;
 
 public class ProductsNormalActivity extends AppCompatActivity {
 
+    //Product inventory
+    Inventory inventory;
+
     //Array for product images
     TypedArray prodImgs;
     int i;
-
-    //Reference to Firebase realtime database
-    DatabaseReference database;
 
     //Screen elements
     TableLayout table;
@@ -43,17 +43,6 @@ public class ProductsNormalActivity extends AppCompatActivity {
     String info;
     TextView productInfo;
     ImageView productImg;
-
-    //Product parameters
-    String available;
-    String critical_qty;
-    String current_qty;
-    String hasDiscount;
-    String name;
-    String price;
-    String priceAtl;
-    String priceSoc;
-    String sold_qty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,46 +65,18 @@ public class ProductsNormalActivity extends AppCompatActivity {
         super.onStart();
 
         prodImgs = getResources().obtainTypedArray(R.array.product_imgs);
-        i = 0;
-
-        database = FirebaseDatabase.getInstance().getReference();
-
-        database.child("products").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-
-                HashMap<String, HashMap<String, String>> products = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
-
-                for(Map.Entry<String, HashMap<String, String>> entry : products.entrySet()) {
-
-                    Map<String, String> productParams = entry.getValue();
-                    available = productParams.get("available");
-                    critical_qty = productParams.get("critical_qty");
-                    current_qty = productParams.get("current_qty");
-                    hasDiscount = productParams.get("hasDiscount");
-                    name = productParams.get("name");
-                    price = productParams.get("price");
-                    priceAtl = productParams.get("priceAtl");
-                    priceSoc = productParams.get("priceSoc");
-                    sold_qty = productParams.get("sold_qty");
-
-                    createProduct(name, price);
-                    i = Integer.parseInt(entry.getKey().substring(7,10));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        inventory = new Inventory();
+        Log.i("PRODUCT_LIST_ACT", String.valueOf(inventory.getProductList()));
+        for(Product p : inventory.getProductList()) {
+            createProduct(p.getName(), p.getPrice(), p.getId());
+        }
     }
 
     @Override
     public void onBackPressed() {
     }
 
-    public void createProduct(final String n, final String p) {
+    public void createProduct(final String n, final float p, final int id) {
 
         // [START] Criação das Views necessárias
         productImg = new ImageView(ProductsNormalActivity.this);
@@ -137,7 +98,7 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
 
         // [START] Configuração de layout das informações do produto
-        info = n + "\n" + "R$" + p;
+        info = n + "\n" + "R$" + String.valueOf(p);
         productInfo.setText(info);
         productInfo.setTextSize(20);
         productInfo.setBackgroundColor(Color.parseColor("#bf0e0e"));

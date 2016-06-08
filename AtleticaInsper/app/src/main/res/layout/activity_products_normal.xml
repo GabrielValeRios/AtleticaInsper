@@ -34,39 +34,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TableLayout android:id="@id/productTable"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <!--
-                <TableRow android:id="@+id/product1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <ImageView android:id="@+id/product1Img"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:background="@color/RED"
-                        android:src="@drawable/bone"/>
-
-                    <TextView android:id="@+id/product1Info"
-                        android:layout_width="0dp"
-                        android:layout_height="300dp"
-                        android:layout_weight="0.4"
-                        android:textSize="12pt"
-                        android:text="@string/product1Info"
-                        android:background="@color/productInfo"
-                        android:textColor="@color/WHITE"
-                        android:gravity="center" />
-
-                </TableRow>
-                -->
-
-            </TableLayout>
-
         </LinearLayout>
 
     </ScrollView>
