@@ -156,8 +156,7 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
 
         // [START] Configuração de layout da imagem do produto
-        //productImg.setImageResource(prodImgs.getResourceId(i, -1));
-        productImg.setImageResource(R.drawable.product001);
+        productImg.setImageResource(prodImgs.getResourceId(id-1, -1));
         productImg.setBackgroundColor(Color.parseColor("#FF0000"));
         // [END] Configuração de layout da imagem do produto
 
