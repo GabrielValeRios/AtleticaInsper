@@ -141,5 +141,27 @@ public class Sale {
 
             }
         });
+
+        //Update nextSaleID
+        database.child("status").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Map<String, HashMap<String, Object>> status = (HashMap) snapshot.getValue();
+                int nextSaleID = Integer.parseInt((String) status.get("nextSaleID").get("value"));
+
+                if(nextSaleID < 10) {
+                    database.child("status").child("nextSaleID").child("value").setValue("000" + (nextSaleID + 1));
+                } else if(nextSaleID > 10 && nextSaleID < 100) {
+                    database.child("status").child("nextSaleID").child("value").setValue("00" + (nextSaleID + 1));
+                } else if(nextSaleID > 999) {
+                    database.child("status").child("nextSaleID").child("value").setValue("0" + (nextSaleID + 1));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

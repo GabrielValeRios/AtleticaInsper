@@ -56,6 +56,7 @@
     <!-- [START] Sell Product Activity -->
     <string name="chooseOption">Escolher</string>
     <string name="ACT_TITLE_LOADING">Carregando...</string>
+    <string name="ACT_TITLE_CHANGE_PRODUCT">Modificar Produto</string>
     <!-- [END] Sell Product Activity -->
 
 </resources>

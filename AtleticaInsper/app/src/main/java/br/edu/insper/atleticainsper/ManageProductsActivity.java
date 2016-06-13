@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -21,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class ManageProductsActivity extends AppCompatActivity {
 
@@ -32,6 +36,8 @@ public class ManageProductsActivity extends AppCompatActivity {
     DatabaseReference database;
 
     //Screen elements
+    ScrollView productScrollView;
+    LinearLayout loadingStatus;
     TableLayout table;
     TableRow row;
     Button logout;
@@ -39,21 +45,16 @@ public class ManageProductsActivity extends AppCompatActivity {
     TextView productInfo;
     ImageView productImg;
 
-    //Product parameters
-    String available;
-    String critical_qty;
-    String current_qty;
-    String hasDiscount;
-    String name;
-    String price;
-    String priceAtl;
-    String priceSoc;
-    String sold_qty;
+    //Product inventory
+    Inventory inv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_products);
+
+        productScrollView = (ScrollView) findViewById(R.id.productScrollView);
+        loadingStatus = (LinearLayout) findViewById(R.id.loadingStatus);
 
     }
 
@@ -66,27 +67,36 @@ public class ManageProductsActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance().getReference();
 
+        inv = new Inventory();
+
         database.child("products").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
                 HashMap<String, HashMap<String, String>> products = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
 
-                for(Map.Entry<String, HashMap<String, String>> entry : products.entrySet()) {
+                Map<String, TreeMap<String, Object>> productMap = new TreeMap<>((HashMap) snapshot.getValue());
 
-                    Map<String, String> productParams = entry.getValue();
-                    available = productParams.get("available");
-                    critical_qty = productParams.get("critical_qty");
-                    current_qty = productParams.get("current_qty");
-                    hasDiscount = productParams.get("hasDiscount");
-                    name = productParams.get("name");
-                    price = productParams.get("price");
-                    priceAtl = productParams.get("priceAtl");
-                    priceSoc = productParams.get("priceSoc");
-                    sold_qty = productParams.get("sold_qty");
+                inv.getProductList().clear();
 
-                    createProduct(name, price);
-                    i = Integer.parseInt(entry.getKey().substring(7,10));
+                for(Map.Entry<String, TreeMap<String, Object>> entry : productMap.entrySet()) {
+
+                    Map<String, Object> productParams = entry.getValue();
+                    int idAsInteger = Integer.parseInt(entry.getKey());
+                    String id = entry.getKey();
+                    float costPrice = (float) (long) productParams.get("costPrice");
+                    int criticalQty = (int) (long) productParams.get("criticalQty");
+                    int currentQty = (int) (long) productParams.get("currentQty");
+                    boolean hasDiscount = (boolean) productParams.get("hasDiscount");
+                    boolean isAvailable = (boolean) productParams.get("isAvailable");
+                    String name = (String) productParams.get("name");
+                    float price = (float) (long) productParams.get("price");
+                    float priceAtl = (float) (long) productParams.get("priceAtl");
+                    float priceSoc = (float) (long) productParams.get("priceSoc");
+                    int soldQty = (int) (long) productParams.get("soldQty");
+
+                    Product p = new Product(id, costPrice, criticalQty, currentQty, hasDiscount, isAvailable, name, price, priceAtl, priceSoc, soldQty);
+                    inv.addProduct(p);
                 }
             }
 
@@ -95,13 +105,29 @@ public class ManageProductsActivity extends AppCompatActivity {
 
             }
         });
+
+        CountDownTimer timer = new CountDownTimer(4000,4000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                loadingStatus.setVisibility(View.GONE);
+                productScrollView.setVisibility(View.VISIBLE);
+                for (Product p : inv.getProductList()) {
+                    createProductLayout(p);
+                }
+            }
+        }.start();
     }
 
     @Override
     public void onBackPressed() {
     }
 
-    public void createProduct(final String n, final String p) {
+    public void createProductLayout(final Product p) {
 
         // [START] Criação das Views necessárias
         productImg = new ImageView(ManageProductsActivity.this);
@@ -123,27 +149,26 @@ public class ManageProductsActivity extends AppCompatActivity {
 
 
         // [START] Configuração de layout das informações do produto
-        info = n + "\n" + "R$" + p;
+        info = p.getName() + "\n" + "R$" + String.valueOf(p.getPrice()) + "0";
         productInfo.setText(info);
         productInfo.setTextSize(20);
         productInfo.setBackgroundColor(Color.parseColor("#bf0e0e"));
         productInfo.setTextColor(Color.parseColor("#ffffff"));
         productInfo.setGravity(Gravity.CENTER);
+
         productInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent SellProduct = new Intent(ManageProductsActivity.this, SellProductActivity.class);
-                SellProduct.putExtra("productName",n);
-                SellProduct.putExtra("productPrice",p);
-                startActivity(SellProduct);
+                Intent ChangeProduct = new Intent(ManageProductsActivity.this, ChangeProductActivity.class);
+                ChangeProduct.putExtra("currentProduct", p);
+                startActivity(ChangeProduct);
             }
         });
         // [END] Configuração de layout das informações do produto
 
 
         // [START] Configuração de layout da imagem do produto
-        //productImg.setImageResource(prodImgs.getResourceId(i, -1));
-        productImg.setImageResource(R.drawable.product001);
+        productImg.setImageResource(prodImgs.getResourceId(Integer.parseInt(p.getId())-1, -1));
         productImg.setBackgroundColor(Color.parseColor("#FF0000"));
         // [END] Configuração de layout da imagem do produto
 
@@ -156,7 +181,7 @@ public class ManageProductsActivity extends AppCompatActivity {
 
         // [START] Adição da row no TableLayout
         if (table != null) {
-            table.addView(row, 0);
+            table.addView(row);
         }
         // [END] Adição da row no TableLayout
     }
