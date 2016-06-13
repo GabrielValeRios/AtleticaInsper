@@ -14,23 +14,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <TextView android:id="@+id/selectProductToEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/selectProductToEdit"
+            android:textSize="12pt"
+            android:textColor="@color/RED"
+            android:layout_weight="0.3"/>
+
         <Button android:id="@+id/addProduct"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="0.3"
             android:text="@string/addProduct"/>
-
-        <Button android:id="@+id/updateProduct"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="0.3"
-            android:text="@string/updateProduct"/>
-
-        <Button android:id="@+id/remProduct"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="0.3"
-            android:text="@string/remProduct"/>
 
     </LinearLayout>
 

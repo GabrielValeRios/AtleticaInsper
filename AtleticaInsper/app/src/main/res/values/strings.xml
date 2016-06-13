@@ -57,6 +57,7 @@
     <string name="chooseOption">Escolher</string>
     <string name="ACT_TITLE_LOADING">Carregando...</string>
     <string name="ACT_TITLE_CHANGE_PRODUCT">Modificar Produto</string>
+    <string name="selectProductToEdit">Selecione um produto ou</string>
     <!-- [END] Sell Product Activity -->
 
 </resources>
