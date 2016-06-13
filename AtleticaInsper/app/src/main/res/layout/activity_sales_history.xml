@@ -9,4 +9,43 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="br.edu.insper.atleticainsper.SalesHistoryActivity">
 
+    <LinearLayout android:id="@+id/loadingStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="110dp">
+
+        <ProgressBar android:id="@+id/loadingBar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:indeterminate="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="@string/loading"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:textSize="20pt"/>
+
+    </LinearLayout>
+
+    <ScrollView android:id="@+id/saleScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_weight="1"
+        android:layout_below="@id/loadingStatus"
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
+
+        <LinearLayout android:id="@+id/saleTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </LinearLayout>
+
+    </ScrollView>
+
 </RelativeLayout>

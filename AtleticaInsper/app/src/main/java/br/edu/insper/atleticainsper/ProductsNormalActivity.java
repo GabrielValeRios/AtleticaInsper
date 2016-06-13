@@ -160,7 +160,11 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
 
         // [START] Configuração de layout das informações do produto
-        info = p.getName() + "\n" + "R$" + String.valueOf(p.getPrice()) + "0";
+        if(p.isAvailable()) {
+            info = p.getName() + "\n" + "R$" + String.valueOf(p.getPrice()) + "0";
+        } else {
+            info = p.getName() + "\n" + "Indisponível";
+        }
         productInfo.setText(info);
         productInfo.setTextSize(20);
         productInfo.setBackgroundColor(Color.parseColor("#bf0e0e"));

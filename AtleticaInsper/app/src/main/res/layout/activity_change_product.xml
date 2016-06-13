@@ -10,4 +10,201 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="br.edu.insper.atleticainsper.ChangeProductActivity">
 
+    <LinearLayout android:id="@+id/changeProductActionMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button android:id="@+id/removeProduct"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.5"
+            android:text="@string/remove"/>
+
+        <Button android:id="@+id/changeProduct"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.5"
+            android:text="@string/modify"/>
+
+        <Button android:id="@+id/cancelModify"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.5"
+            android:text="@string/LABEL_Cancelar"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/changeProductForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/changeProductActionMenu"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout android:id="@+id/changeProductFormEntry1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/changeProductFormLabel1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:textSize="12pt"
+                android:text="@string/CHANGEPRODUCT_FORM_NAME"/>
+
+            <EditText android:id="@+id/changeProductFormField1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@color/formField"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:inputType="textCapWords"
+                android:enabled="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/changeProductFormEntry2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView android:id="@+id/changeProductFormLabel2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:textSize="12pt"
+                android:text="@string/CHANGEPRODUCT_FORM_CRITICALQTY"/>
+
+            <EditText android:id="@+id/changeProductFormField2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:inputType="number"
+                android:background="@color/formField"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:enabled="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/changeProductFormEntry3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView android:id="@+id/changeProductFormLabel3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:textSize="12pt"
+                android:text="@string/ADDPRODUCT_FORM_COSTPRICE"/>
+
+            <EditText android:id="@+id/changeProductFormField3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:inputType="number"
+                android:background="@color/formField"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:enabled="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/changeProductFormEntry4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView android:id="@+id/changeProductFormLabel4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:textSize="12pt"
+                android:text="@string/CHANGEPRODUCT_FORM_PRICE"/>
+
+            <EditText android:id="@+id/changeProductFormField4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:inputType="numberDecimal"
+                android:background="@color/formField"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:enabled="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/changeProductFormEntry5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView android:id="@+id/changeProductFormLabel5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:textSize="12pt"
+                android:text="@string/ADDPRODUCT_FORM_PRICEATL"/>
+
+            <EditText android:id="@+id/changeProductFormField5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:inputType="numberDecimal"
+                android:background="@color/formField"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:enabled="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/changeProductFormEntry6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView android:id="@+id/changeProductFormLabel6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:textSize="12pt"
+                android:text="@string/ADDPRODUCT_FORM_PRICESOC"/>
+
+            <EditText android:id="@+id/changeProductFormField6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:inputType="numberDecimal"
+                android:background="@color/formField"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:enabled="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button android:id="@+id/confirmModification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_marginTop="10dp"
+        android:enabled="false"/>
+
 </RelativeLayout>

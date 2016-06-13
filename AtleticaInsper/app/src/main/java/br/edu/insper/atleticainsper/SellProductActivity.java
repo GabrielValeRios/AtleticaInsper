@@ -102,7 +102,7 @@ public class SellProductActivity extends AppCompatActivity {
                         Map<String, HashMap<String, Object>> statusMap = (HashMap) snapshot.getValue();
                         Log.i("STATUSMAP", String.valueOf(statusMap));
 
-                        int nextProductID = (int) (long) statusMap.get("nextProductID").get("value");
+                        String nextProductID = (String) statusMap.get("nextProductID").get("value");
                         String nextSaleID = (String) statusMap.get("nextSaleID").get("value");
 
                         sale = new Sale(pmtMethod, product, seller, nextSaleID);

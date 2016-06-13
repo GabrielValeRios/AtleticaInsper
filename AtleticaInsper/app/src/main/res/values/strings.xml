@@ -72,4 +72,16 @@
     <string name="LABEL_Adicionar">Adicionar</string>
     <!-- [END] Add Product Activity -->
 
+    <!-- [START] Change Product Activity -->
+    <string name="CHANGEPRODUCT_FORM_NAME">Novo nome:</string>
+    <string name="CHANGEPRODUCT_FORM_CRITICALQTY">Quantidade Crítica:</string>
+    <string name="CHANGEPRODUCT_FORM_COSTPRICE">Preço de Custo:</string>
+    <string name="CHANGEPRODUCT_FORM_PRICE">Preço Normal:</string>
+    <string name="CHANGEPRODUCT_FORM_PRICEATL">Preço Atleta:</string>
+    <string name="CHANGEPRODUCT_FORM_PRICESOC">Preço Sócio:</string>
+    <string name="modify">Modificar</string>
+    <string name="remove">Remover</string>
+    <string name="save">Salvar</string>
+    <!-- [END] Change Product Activity -->
+
 </resources>

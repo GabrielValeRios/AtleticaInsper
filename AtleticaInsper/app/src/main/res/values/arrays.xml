@@ -27,6 +27,10 @@
         <item>@drawable/product023</item>
         <item>@drawable/product024</item>
         <item>@drawable/product025</item>
+        <item>@drawable/product026</item>
+        <item>@drawable/product027</item>
+        <item>@drawable/product028</item>
+        <item>@drawable/product029</item>
     </integer-array>
 
 </resources>

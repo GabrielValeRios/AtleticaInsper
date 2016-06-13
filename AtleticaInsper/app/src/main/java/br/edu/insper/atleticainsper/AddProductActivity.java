@@ -69,6 +69,9 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                cancel.setEnabled(false);
+                add.setEnabled(false);
+
                 name = fieldName.getText().toString();
                 criticalQty = fieldCriticalQty.getText().toString();
                 currentQty = fieldCurrentQty.getText().toString();
