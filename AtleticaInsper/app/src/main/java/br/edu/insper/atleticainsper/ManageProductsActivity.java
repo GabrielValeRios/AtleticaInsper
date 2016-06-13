@@ -133,6 +133,10 @@ public class ManageProductsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent AdminMenu = new Intent(ManageProductsActivity.this, AdminMenuActivity.class);
+        startActivity(AdminMenu);
     }
 
     public void createProductLayout(final Product p) {
