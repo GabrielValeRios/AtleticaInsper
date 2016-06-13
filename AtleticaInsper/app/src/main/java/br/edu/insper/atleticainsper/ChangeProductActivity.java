@@ -1,5 +1,6 @@
 package br.edu.insper.atleticainsper;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,6 +46,8 @@ public class ChangeProductActivity extends AppCompatActivity implements Serializ
             @Override
             public void onClick(View v) {
                 database.child("products").child(product.getId()).removeValue();
+                Intent ManageProducts = new Intent(ChangeProductActivity.this, ManageProductsActivity.class);
+                startActivity(ManageProducts);
             }
         });
 
@@ -74,6 +77,8 @@ public class ChangeProductActivity extends AppCompatActivity implements Serializ
                 field5.setText(""); field5.setEnabled(false);
                 field6.setText(""); field6.setEnabled(false);
                 confirm.setEnabled(false);
+                confirm.setVisibility(View.GONE);
+                modify.setVisibility(View.VISIBLE);
             }
         });
 
