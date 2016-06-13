@@ -58,6 +58,18 @@
     <string name="ACT_TITLE_LOADING">Carregando...</string>
     <string name="ACT_TITLE_CHANGE_PRODUCT">Modificar Produto</string>
     <string name="selectProductToEdit">Selecione um produto ou</string>
+    <string name="ACT_TITLE_ADD_PRODUCT">Adicionar Produto</string>
     <!-- [END] Sell Product Activity -->
+
+    <!-- [START] Add Product Activity -->
+    <string name="ADDPRODUCT_FORM_COSTPRICE">Preço de Custo:</string>
+    <string name="ADDPRODUCT_FORM_CRITICALQTY">Quantidade Crítica:</string>
+    <string name="ADDPRODUCT_FORM_CURRENTQTY">Quantidade a Adicionar:</string>
+    <string name="ADDPRODUCT_FORM_NAME">Nome:</string>
+    <string name="ADDPRODUCT_FORM_PRICE">Preço Normal:</string>
+    <string name="ADDPRODUCT_FORM_PRICEATL">Preço Atleta:</string>
+    <string name="ADDPRODUCT_FORM_PRICESOC">Preço Sócio:</string>
+    <string name="LABEL_Adicionar">Adicionar</string>
+    <!-- [END] Add Product Activity -->
 
 </resources>

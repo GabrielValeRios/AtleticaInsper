@@ -40,7 +40,7 @@ public class ManageProductsActivity extends AppCompatActivity {
     LinearLayout loadingStatus;
     TableLayout table;
     TableRow row;
-    Button logout;
+    Button addProduct;
     String info;
     TextView productInfo;
     ImageView productImg;
@@ -55,7 +55,15 @@ public class ManageProductsActivity extends AppCompatActivity {
 
         productScrollView = (ScrollView) findViewById(R.id.productScrollView);
         loadingStatus = (LinearLayout) findViewById(R.id.loadingStatus);
+        addProduct = (Button) findViewById(R.id.addProduct);
 
+        addProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent AddProduct = new Intent(ManageProductsActivity.this, AddProductActivity.class);
+                startActivity(AddProduct);
+            }
+        });
     }
 
     @Override

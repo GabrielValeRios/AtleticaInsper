@@ -54,6 +54,9 @@
             android:name=".ChangeProductActivity"
             android:label="@string/ACT_TITLE_CHANGE_PRODUCT" />
         <activity
+            android:name=".AddProductActivity"
+            android:label="@string/ACT_TITLE_ADD_PRODUCT" />
+        <activity
             android:name=".LoadingActivity"
             android:label="@string/ACT_TITLE_LOADING"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

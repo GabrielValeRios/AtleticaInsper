@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:textColor="@color/BLACK"
-    android:background="@color/loginFormField"
+    android:background="@color/formField"
     android:gravity="center_vertical"
     android:padding="10dp"
     android:textSize="10pt">
