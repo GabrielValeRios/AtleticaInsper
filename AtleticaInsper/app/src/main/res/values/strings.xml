@@ -16,6 +16,7 @@
 
     <string name="forgotPassword"><a href="https://google.com"><i>Esqueci minha senha</i></a></string>
     <string name="login">Login</string>
+    <string name="loading">Carregando</string>
     <string name="DONE">OK</string>
     <string name="loggedAs">Usando como:</string>
     <string name="loggedUsername">Marcelo Franco</string>
@@ -51,5 +52,10 @@
     <string name="remProduct">Remover Produto</string>
     <string name="DEFAULT">DEFAULT</string>
     <!-- [END] Manage Products Activity -->
+
+    <!-- [START] Sell Product Activity -->
+    <string name="chooseOption">Escolher</string>
+    <string name="ACT_TITLE_LOADING">Carregando...</string>
+    <!-- [END] Sell Product Activity -->
 
 </resources>

@@ -1,9 +1,13 @@
 package br.edu.insper.atleticainsper;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.CountDownTimer;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,9 +18,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,17 +30,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class ProductsNormalActivity extends AppCompatActivity {
 
+    DatabaseReference database;
+
     //Product inventory
-    Inventory inventory;
+    Inventory inv;
 
     //Array for product images
     TypedArray prodImgs;
-    int i;
 
     //Screen elements
     TableLayout table;
@@ -43,6 +52,8 @@ public class ProductsNormalActivity extends AppCompatActivity {
     String info;
     TextView productInfo;
     ImageView productImg;
+    ScrollView productScrollView;
+    LinearLayout loadingStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,25 +69,76 @@ public class ProductsNormalActivity extends AppCompatActivity {
                 startActivity(Login);
             }
         });
+
+        productScrollView = (ScrollView) findViewById(R.id.productScrollView);
+        loadingStatus = (LinearLayout) findViewById(R.id.loadingStatus);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
+        database = FirebaseDatabase.getInstance().getReference();
+
         prodImgs = getResources().obtainTypedArray(R.array.product_imgs);
-        inventory = new Inventory();
-        Log.i("PRODUCT_LIST_ACT", String.valueOf(inventory.getProductList()));
-        for(Product p : inventory.getProductList()) {
-            createProduct(p.getName(), p.getPrice(), p.getId());
-        }
+
+        inv = new Inventory();
+
+        database.child("products").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                Map<String, TreeMap<String, Object>> productMap = new TreeMap<>((HashMap) snapshot.getValue());
+
+                inv.getProductList().clear();
+
+                for(Map.Entry<String, TreeMap<String, Object>> entry : productMap.entrySet()) {
+
+                    Map<String, Object> productParams = entry.getValue();
+                    int idAsInteger = Integer.parseInt(entry.getKey());
+                    String id = entry.getKey();
+                    float costPrice = (float) (long) productParams.get("costPrice");
+                    int criticalQty = (int) (long) productParams.get("criticalQty");
+                    int currentQty = (int) (long) productParams.get("currentQty");
+                    boolean hasDiscount = (boolean) productParams.get("hasDiscount");
+                    boolean isAvailable = (boolean) productParams.get("isAvailable");
+                    String name = (String) productParams.get("name");
+                    float price = (float) (long) productParams.get("price");
+                    float priceAtl = (float) (long) productParams.get("priceAtl");
+                    float priceSoc = (float) (long) productParams.get("priceSoc");
+                    int soldQty = (int) (long) productParams.get("soldQty");
+
+                    Product p = new Product(id, costPrice, criticalQty, currentQty, hasDiscount, isAvailable, name, price, priceAtl, priceSoc, soldQty);
+                    inv.addProduct(p);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+
+        CountDownTimer timer = new CountDownTimer(4000,4000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                loadingStatus.setVisibility(View.GONE);
+                productScrollView.setVisibility(View.VISIBLE);
+                for (Product p : inv.getProductList()) {
+                    createProductLayout(p);
+                }
+            }
+        }.start();
     }
 
     @Override
     public void onBackPressed() {
     }
 
-    public void createProduct(final String n, final float p, final int id) {
+    public void createProductLayout(final Product p) {
 
         // [START] Criação das Views necessárias
         productImg = new ImageView(ProductsNormalActivity.this);
@@ -98,18 +160,18 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
 
         // [START] Configuração de layout das informações do produto
-        info = n + "\n" + "R$" + String.valueOf(p);
+        info = p.getName() + "\n" + "R$" + String.valueOf(p.getPrice()) + "0";
         productInfo.setText(info);
         productInfo.setTextSize(20);
         productInfo.setBackgroundColor(Color.parseColor("#bf0e0e"));
         productInfo.setTextColor(Color.parseColor("#ffffff"));
         productInfo.setGravity(Gravity.CENTER);
+
         productInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent SellProduct = new Intent(ProductsNormalActivity.this, SellProductActivity.class);
-                SellProduct.putExtra("productName",n);
-                SellProduct.putExtra("productPrice",p);
+                SellProduct.putExtra("currentProduct", p);
                 startActivity(SellProduct);
             }
         });
@@ -117,7 +179,7 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
 
         // [START] Configuração de layout da imagem do produto
-        productImg.setImageResource(prodImgs.getResourceId(id-1, -1));
+        productImg.setImageResource(prodImgs.getResourceId(Integer.parseInt(p.getId())-1, -1));
         productImg.setBackgroundColor(Color.parseColor("#FF0000"));
         // [END] Configuração de layout da imagem do produto
 
@@ -130,8 +192,12 @@ public class ProductsNormalActivity extends AppCompatActivity {
 
         // [START] Adição da row no TableLayout
         if (table != null) {
-            table.addView(row, 0);
+            table.addView(row);
         }
         // [END] Adição da row no TableLayout
+    }
+
+    public Inventory getInventory() {
+        return inv;
     }
 }

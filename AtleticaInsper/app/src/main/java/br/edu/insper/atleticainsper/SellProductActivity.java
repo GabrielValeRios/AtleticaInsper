@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class SellProductActivity extends AppCompatActivity {
 
@@ -33,13 +36,22 @@ public class SellProductActivity extends AppCompatActivity {
     Button cancelSell;
     Button confirmSell;
 
-    String pName;
-    String pPrice;
+    Product product;
+
+    String seller;
+    String pmtMethod;
+
+    SaleHistory saleHistory;
+    Sale sale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_product);
+
+        database = FirebaseDatabase.getInstance().getReference();
+
+        saleHistory = new SaleHistory();
 
         productName = (TextView) findViewById(R.id.FIELD_prodName);
         productPrice = (TextView) findViewById(R.id.FIELD_prodPrice);
@@ -54,7 +66,7 @@ public class SellProductActivity extends AppCompatActivity {
         spinnerSeller.add("Gustavo Efeiche");
         spinnerSeller.add("João Pedro Castro");
         spinnerSeller.add("Marcelo Franco");
-        Spinner s1 = (Spinner) findViewById(R.id.sellerChooser);
+        final Spinner s1 = (Spinner) findViewById(R.id.sellerChooser);
         ArrayAdapter adapter1 = new ArrayAdapter(this, R.layout.seller_chooser_item, spinnerSeller);
         s1.setAdapter(adapter1);
 
@@ -62,7 +74,7 @@ public class SellProductActivity extends AppCompatActivity {
         spinnerPayMethod = new ArrayList<String>();
         spinnerPayMethod.add("Cartão");
         spinnerPayMethod.add("Dinheiro");
-        Spinner s2 = (Spinner) findViewById(R.id.methodChooser);
+        final Spinner s2 = (Spinner) findViewById(R.id.methodChooser);
         ArrayAdapter adapter2 = new ArrayAdapter(this, R.layout.seller_chooser_item, spinnerPayMethod);
         s2.setAdapter(adapter2);
 
@@ -81,37 +93,20 @@ public class SellProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent ProductsNormal = new Intent(SellProductActivity.this, ProductsNormalActivity.class);
 
-                database = FirebaseDatabase.getInstance().getReference();
+                seller = s1.getSelectedItem().toString();
+                pmtMethod = s2.getSelectedItem().toString();
 
-                database.child("products").addListenerForSingleValueEvent(new ValueEventListener() {
+                database.child("status").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
+                        Map<String, HashMap<String, Object>> statusMap = (HashMap) snapshot.getValue();
+                        Log.i("STATUSMAP", String.valueOf(statusMap));
 
-                        HashMap<String, HashMap<String, String>> products = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
+                        int nextProductID = (int) (long) statusMap.get("nextProductID").get("value");
+                        String nextSaleID = (String) statusMap.get("nextSaleID").get("value");
 
-                        for(Map.Entry<String, HashMap<String, String>> entry : products.entrySet()) {
-
-                            Map<String, String> productParams = entry.getValue();
-                            String productID = entry.getKey();
-
-                            if(productParams.get("name") != null) {
-                                if(productParams.get("name").equals(pName) && productParams.get("available").equals("true")) {
-                                    int current_qty = Integer.parseInt(productParams.get("current_qty"));
-
-                                    database.child("products")
-                                            .child(productID)
-                                            .child("current_qty")
-                                            .setValue(String.valueOf(current_qty - 1));
-
-                                    if(Integer.parseInt(productParams.get("current_qty")) == 1) {
-                                        database.child("products")
-                                                .child(productID)
-                                                .child("available")
-                                                .setValue("false");
-                                    }
-                                }
-                            }
-                        }
+                        sale = new Sale(pmtMethod, product, seller, nextSaleID);
+                        sale.compute();
                     }
 
                     @Override
@@ -132,22 +127,13 @@ public class SellProductActivity extends AppCompatActivity {
 
         extras = getIntent().getExtras();
         if (extras != null) {
-            pName = extras.getString("productName");
-            pPrice = extras.getString("productPrice");
-            productName.setText(pName);
-            productPrice.setText("R$ " + pPrice);
+            product = (Product) extras.getSerializable("currentProduct");
+            productName.setText(product.getName());
+            productPrice.setText("R$ " + product.getPrice() + "0");
         }
     }
 
     @Override
     public void onBackPressed() {
-    }
-
-    public void delay(int seconds) {
-        try {
-            Thread.sleep(seconds*1000);                 //1000 milliseconds is one second.
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
     }
 }

@@ -1,9 +1,12 @@
 package br.edu.insper.atleticainsper;
 
 
-public class Product {
+import java.io.Serializable;
 
-    private int id;
+public class Product implements Serializable {
+
+    private String id;
+    private int idAsInteger;
     private float costPrice;
     private int criticalQty;
     private int currentQty;
@@ -15,7 +18,7 @@ public class Product {
     private float priceSoc;
     private int soldQty;
 
-    public Product(int id, float costPrice, int criticalQty, int currentQty, boolean hasDiscount, boolean isAvailable, String name, float price, float priceAtl, float priceSoc, int soldQty) {
+    public Product(String id, float costPrice, int criticalQty, int currentQty, boolean hasDiscount, boolean isAvailable, String name, float price, float priceAtl, float priceSoc, int soldQty) {
         this.id = id;
         this.costPrice = costPrice;
         this.criticalQty = criticalQty;
@@ -29,11 +32,11 @@ public class Product {
         this.soldQty = soldQty;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

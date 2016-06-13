@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ManageMenuActivity"
+            android:name=".AdminMenuActivity"
             android:label="@string/ACT_TITLE_MANAGE_MENU"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -49,7 +49,12 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SellProductActivity"
-            android:label="@string/ACT_TITLE_SELL_PRODUCT"></activity>
+            android:label="@string/ACT_TITLE_SELL_PRODUCT" />
+        <activity
+            android:name=".LoadingActivity"
+            android:label="@string/ACT_TITLE_LOADING"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

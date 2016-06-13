@@ -19,6 +19,30 @@
         android:scaleType="fitCenter"
         android:layout_marginTop="40dp" />
 
+    <LinearLayout android:id="@+id/loadingStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/logoAtletica"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="110dp"
+        android:visibility="gone">
+
+        <ProgressBar android:id="@+id/loadingBar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:indeterminate="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="@string/loading"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:textSize="20pt"/>
+
+    </LinearLayout>
+
     <EditText android:id="@id/username"
         android:layout_width="500dp"
         android:layout_height="50dp"
@@ -46,19 +70,11 @@
         android:inputType="numberPassword"
         android:imeActionLabel="@string/DONE"/>
 
-    <TextView android:id="@id/forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:text="@string/forgotPassword"
-        android:layout_alignRight="@id/password"
-        android:visibility="invisible"/>
-
     <Button android:id="@id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        android:layout_below="@id/forgotPassword"
+        android:layout_below="@id/password"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:paddingTop="20dp"

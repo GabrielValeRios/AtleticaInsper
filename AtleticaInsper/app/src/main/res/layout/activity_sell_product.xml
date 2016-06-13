@@ -29,7 +29,8 @@
             <Spinner android:id="@+id/sellerChooser"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5">
+                android:layout_weight="0.5"
+                android:prompt="@string/chooseOption">
             </Spinner>
 
         </LinearLayout>
@@ -96,7 +97,8 @@
             <Spinner android:id="@+id/methodChooser"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5">
+                android:layout_weight="0.5"
+                android:prompt="@string/chooseOption">
             </Spinner>
 
         </LinearLayout>
