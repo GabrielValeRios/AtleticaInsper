@@ -19,7 +19,7 @@ public class ChangeProductActivity extends AppCompatActivity implements Serializ
     Bundle extras;
     Product product;
 
-    Button remove, modify, cancel, confirm;
+    Button remove, modify, cancel, confirm, goback;
 
     EditText field1, field2, field3, field4, field5, field6;
 
@@ -34,6 +34,7 @@ public class ChangeProductActivity extends AppCompatActivity implements Serializ
         confirm = (Button) findViewById(R.id.confirmModification);
         modify = (Button) findViewById(R.id.changeProduct);
         remove = (Button) findViewById(R.id.removeProduct);
+        goback = (Button) findViewById(R.id.goBackModify);
 
         field1 = (EditText) findViewById(R.id.changeProductFormField1);
         field2 = (EditText) findViewById(R.id.changeProductFormField2);
@@ -46,6 +47,14 @@ public class ChangeProductActivity extends AppCompatActivity implements Serializ
             @Override
             public void onClick(View v) {
                 database.child("products").child(product.getId()).removeValue();
+                Intent ManageProducts = new Intent(ChangeProductActivity.this, ManageProductsActivity.class);
+                startActivity(ManageProducts);
+            }
+        });
+
+        goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent ManageProducts = new Intent(ChangeProductActivity.this, ManageProductsActivity.class);
                 startActivity(ManageProducts);
             }

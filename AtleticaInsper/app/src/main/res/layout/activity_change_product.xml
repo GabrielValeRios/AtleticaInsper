@@ -200,12 +200,25 @@
 
     </LinearLayout>
 
-    <Button android:id="@+id/confirmModification"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/save"
-        android:layout_marginTop="10dp"
-        android:enabled="false"
-        android:layout_below="@id/changeProductForm"/>
+        android:layout_height="wrap_content">
+
+        <Button android:id="@+id/goBackModify"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.5"
+            android:text="@string/LABEL_Cancelar"/>
+
+        <Button android:id="@+id/confirmModification"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.5"
+            android:text="@string/save"
+            android:layout_marginTop="10dp"
+            android:enabled="false"
+            android:layout_below="@id/changeProductForm"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
