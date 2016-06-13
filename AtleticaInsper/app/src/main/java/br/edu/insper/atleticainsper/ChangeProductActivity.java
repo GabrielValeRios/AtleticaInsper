@@ -77,7 +77,7 @@ public class ChangeProductActivity extends AppCompatActivity implements Serializ
                 field5.setText(""); field5.setEnabled(false);
                 field6.setText(""); field6.setEnabled(false);
                 confirm.setEnabled(false);
-                confirm.setVisibility(View.GONE);
+                cancel.setVisibility(View.GONE);
                 modify.setVisibility(View.VISIBLE);
             }
         });
@@ -86,13 +86,19 @@ public class ChangeProductActivity extends AppCompatActivity implements Serializ
             @Override
             public void onClick(View v) {
                 DatabaseReference currProduct = database.child("products").child(product.getId());
-                currProduct.child("name").setValue(field1.getText().toString());
-                currProduct.child("criticalQty").setValue(Long.parseLong(field2.getText().toString()));
-                currProduct.child("costPrice").setValue(Float.parseFloat(field3.getText().toString()));
-                currProduct.child("price").setValue(Float.parseFloat(field4.getText().toString()));
-                currProduct.child("priceAtl").setValue(Float.parseFloat(field5.getText().toString()));
-                currProduct.child("priceSoc").setValue(Float.parseFloat(field6.getText().toString()));
-
+                if(field1.getText().toString() != null) {
+                    currProduct.child("name").setValue(field1.getText().toString());
+                } else if(field2.getText().toString() != null) {
+                    currProduct.child("criticalQty").setValue(Long.parseLong(field2.getText().toString()));
+                } else if(field3.getText().toString() != null) {
+                    currProduct.child("costPrice").setValue(Float.parseFloat(field3.getText().toString()));
+                } else if(field4.getText().toString() != null) {
+                    currProduct.child("price").setValue(Float.parseFloat(field4.getText().toString()));
+                } else if(field5.getText().toString() != null) {
+                    currProduct.child("priceAtl").setValue(Float.parseFloat(field5.getText().toString()));
+                } else if(field6.getText().toString() != null) {
+                    currProduct.child("priceSoc").setValue(Float.parseFloat(field6.getText().toString()));
+                }
             }
         });
     }

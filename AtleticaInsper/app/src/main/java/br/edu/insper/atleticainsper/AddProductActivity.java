@@ -82,7 +82,7 @@ public class AddProductActivity extends AppCompatActivity {
 
                 if (validateForm()) {
 
-                    if (price == priceAtl) {
+                    if (price.equals(priceAtl)) {
                         hasDiscount = false;
                     } else {
                         hasDiscount = true;
@@ -170,28 +170,28 @@ public class AddProductActivity extends AppCompatActivity {
             toast.setText("O nome do produto não pode estar em branco!");
             toast.show();
             return false;
-        } else if(Integer.parseInt(criticalQty) <= 0) {
+        } else if(criticalQty == "0" || criticalQty == null) {
             toast.setText("A quantidade crítica não pode ser 0!");
             toast.show();
             return false;
-        } else if(Integer.parseInt(currentQty) <= 0) {
+        } else if(currentQty == "0" || currentQty == null) {
             toast.setText("Um novo produto não pode ter quantidade 0!");
             toast.show();
             return false;
-        } else if(Float.parseFloat(costPrice) <= 0) {
+        } else if(costPrice == "0" || costPrice == null) {
             toast.setText("O preço de custo não pode ser 0!");
             toast.show();
             return false;
-        } else if(Float.parseFloat(price) <= 0) {
+        } else if(price == "0" || price == null) {
             toast.setText("O preço do produto não pode ser 0!");
             toast.show();
             return false;
-        } else if(Float.parseFloat(priceAtl) <= 0) {
+        } else if(priceAtl == "0" || priceAtl == null) {
             toast.setText("O preço de atleta não poder 0! Se não há diferença para o preço normal, coloque o mesmo.");
             toast.setDuration(Toast.LENGTH_LONG);
             toast.show();
             return false;
-        } else if(Float.parseFloat(priceSoc) <= 0) {
+        } else if(priceSoc == "0" || priceSoc == null) {
             toast.setText("O preço de sócio não pode ser 0! Se não há diferença para o preço normal, coloque o mesmo!");
             toast.setDuration(Toast.LENGTH_LONG);
             toast.show();
