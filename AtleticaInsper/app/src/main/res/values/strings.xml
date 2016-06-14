@@ -18,7 +18,7 @@
     <string name="login">Login</string>
     <string name="loading">Carregando</string>
     <string name="DONE">OK</string>
-    <string name="loggedAs">Usando como:</string>
+    <string name="loggedAs">Bem-vindo!</string>
     <string name="loggedUsername">Marcelo Franco</string>
     <string name="loggedUsernameNormal">Gustavo Efeiche</string>
     <string name="logout">Logout</string>
